@@ -12,7 +12,10 @@ end
 
 -- This is where you actually apply your config choices
 
--- Leo, just put your stuff here! (from here until before return config)
+-- just put your stuff here! (from here until before return config)
+
+-- this forces wezterm to run as interative shell instead of login shell, important for .bashrc to work
+config.default_prog = { os.getenv("SHELL") }
 
 -- config.color_scheme = 'Ibm 3270 (High Contrast) (Gogh)'
 config.enable_tab_bar = false
@@ -29,10 +32,14 @@ config.window_padding =
     bottom = 0,
 }
 
-if wezterm.target_triple:match("windows") then
-	config.default_prog = {'powershell.exe', '-NoLogo', '-NoProfile', '-noe', '-Command', '&{Import-Module "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 3180fa66 -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64"}'}
-	config.default_cwd = "c:\\dev"
-end
+
+-- if wezterm.target_triple:match("windows") then
+-- 	config.default_prog = {'powershell.exe', '-NoLogo', '-NoProfile', '-noe', '-Command', 
+-- 	'&{Import-Module "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 3180fa66 -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64"}'}
+-- 	config.default_cwd = "c:\\dev"
+-- end
+
+
 
 -- and finally, return the configuration to wezterm
 return config

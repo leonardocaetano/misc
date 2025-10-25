@@ -2,7 +2,6 @@ HISTSIZE=500
 SAVEHIST=500
 HISTFILE=~/.bash_history
 alias ls="ls -lah --color=auto"
-alias dir="ls -lah --color=auto"
 alias cls="clear"
 alias vim="nvim"
 alias power="powerprofilesctl"
