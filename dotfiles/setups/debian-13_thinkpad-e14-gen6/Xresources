@@ -1,6 +1,12 @@
 ! cursor size
 Xcursor.size: 24
 
+! video configs
+
+Xft*dpi:       96
+Xft*antialias: True
+Xft*hinting:   Full
+
 ! urxvt stuff
 
 URxvt.background:	#1F1D19
@@ -9,10 +15,6 @@ URxvt.font:		xft:Terminus (TTF):pixelsize=14:antialias=true:hinting=true
 URxvt.boldFont:		xft:Terminus (TTF):pixelsize=14:antialias=true:hinting=true
 URxvt.scrollBar:	false
 URxvt.saveLines:	65535
-
-Xft*dpi:       96
-Xft*antialias: True
-Xft*hinting:   Full
 
 URxvt.iso14755:                   false
 URxvt.keysym.Shift-Control-V:     eval:paste_clipboard

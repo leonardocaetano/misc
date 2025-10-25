@@ -1,8 +1,15 @@
 # various keyboard configs
 setxkbmap -option ctrl:nocaps
 
+# fixes thinkpad's abnt2 missing ?/° key
+# this still has this behavior that when you hold this key, it only prints one char, while the
+# rest of the keyboard allows you to print various chars while you hold it
+# but this shouldn't matter
+setxkbmap -model thinkpad60 -layout br
+
 # monitor setup stuff
-# xrandr --output HDMI-0 --mode 1920x1200 --rate 60
+# xrandr --output DP-0 --mode 2560x1440 --rate 165
+# you can use the xrandr command to get video output information
 
 # Xresources stuff
 xrdb -load ~/.Xresources
@@ -27,16 +34,13 @@ xset -dpms
 # inkscape
 # inkscape.home
 # inkscape.config
+#
+# also make sure that the libfuse2 and fuse (yes, they are different things) are installed
+# crucial appimages for debian on this: wezterm, neovide
 export PATH="$HOME/.appimages:$PATH"
 
 # this is important for appimages, because they only get recognized on dmenu after a "cache" rebuild
 rm -f ~/.cache/dmenu_run
-
-# fixes thinkpad's abnt2 missing ?/° key
-# this still has this behavior that when you hold this key, it only prints one char, while the
-# rest of the keyboard allows you to print various chars while you hold it
-# but this shouldn't matter
-setxkbmap -model thinkpad60 -layout br
 
 # initalizes the i3 window manager
 exec i3
