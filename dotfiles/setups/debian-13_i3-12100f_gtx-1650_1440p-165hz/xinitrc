@@ -1,0 +1,46 @@
+# various keyboard configs
+setxkbmap -option ctrl:nocaps
+
+# fixes thinkpad's abnt2 missing ?/° key
+# this still has this behavior that when you hold this key, it only prints one char, while the
+# rest of the keyboard allows you to print various chars while you hold it
+# but this shouldn't matter
+setxkbmap -model thinkpad60 -layout br
+
+# monitor setup stuff
+# xrandr --output DP-0 --mode 2560x1440 --rate 165
+# you can use the xrandr command to get video output information
+
+# Xresources stuff
+xrdb -load ~/.Xresources
+
+# sets the default GTK3 theme to adawita dark
+export GTK_THEME=Adwaita:dark
+
+# various monitor/computer settings
+xset b off
+xset b 0 0 0
+xset s off
+xset -dpms
+
+# appimages path
+#
+# obs: this is only for your DE/WM, not your bash terminal
+# remember to remove the .AppImage extension and only then chmod +x it
+#
+# obs2: you need to restart your x session in order to this apply
+#
+# psa: if you create directories using the structure below, you can have isolated home vars
+# inkscape
+# inkscape.home
+# inkscape.config
+#
+# also make sure that the libfuse2 and fuse (yes, they are different things) are installed
+# crucial appimages for debian on this: wezterm, neovide
+export PATH="$HOME/.appimages:$PATH"
+
+# this is important for appimages, because they only get recognized on dmenu after a "cache" rebuild
+rm -f ~/.cache/dmenu_run
+
+# initalizes the i3 window manager
+exec i3

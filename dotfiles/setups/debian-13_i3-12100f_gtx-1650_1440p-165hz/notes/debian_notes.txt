@@ -1,0 +1,25 @@
+- remember to go to /etc/NetworkManager/NetworkManager.conf and comment out the preseved wifi connection. this is important so the network manager applet works
+
+- just leave the root password blank and create only the user one, the sudo permisions for the user will be created automatically
+
+- for debian minimal, you can uncheck everything on that 'pick your DE' screen, even the "basic system utils"
+
+- if debian minimal, install alsa-utils and pulseaudio for audio, that's enough
+
+- keep it very minimal, i've only installed on this system so far: (you should try to stay on the terminal as much as possible, and use the browser for PDF reading or spreadcheets)
+i3
+firefox
+nvim
+p7zip
+htop
+screenfetch
+alsa-utils
+pulseaudio
+man
+git
+curl
+the nvidia driver stuff (go on debian wiki for instructions)
+wezterm and neovide (appimages)
+gh (the only external mirror one)
+
+- fun i3 tip, to float window: shift + $mod + space, to resize it: $mod + right mouse 
