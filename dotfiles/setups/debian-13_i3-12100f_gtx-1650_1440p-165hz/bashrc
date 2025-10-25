@@ -4,7 +4,8 @@ HISTFILE=~/.bash_history
 alias ls="ls -lah --color=auto"
 alias cls="clear"
 alias vim="nvim"
-alias power="powerprofilesctl"
+alias gs="git remote update && git status"
+# alias power="powerprofilesctl" # this is only for laptops
 
 # appimages path
 # obs: this is only for the bash terminal, not your DE's
