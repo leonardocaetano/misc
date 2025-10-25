@@ -5,10 +5,10 @@ setxkbmap -option ctrl:nocaps
 # this still has this behavior that when you hold this key, it only prints one char, while the
 # rest of the keyboard allows you to print various chars while you hold it
 # but this shouldn't matter
-setxkbmap -model thinkpad60 -layout br
+# setxkbmap -model thinkpad60 -layout br
 
 # monitor setup stuff
-# xrandr --output DP-0 --mode 2560x1440 --rate 165
+xrandr --output DP-0 --mode 2560x1440 --rate 165
 # you can use the xrandr command to get video output information
 
 # Xresources stuff

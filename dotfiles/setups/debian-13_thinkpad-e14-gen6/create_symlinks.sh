@@ -30,6 +30,7 @@ ln -s -f "$parent_dir"/tmux.conf ~/.tmux.conf &> /dev/null
 ln -s -f "$parent_dir"/Xresources ~/.Xresources &> /dev/null
 ln -s -f "$parent_dir"/xinitrc ~/.xinitrc &> /dev/null
 ln -s -f "$parent_dir"/bashrc ~/.bashrc &> /dev/null
+ln -s -f "$parent_dir"/profile ~/.profile &> /dev/null
 ln -s -f "$parent_dir"/config/nvim/init.vim ~/.config/nvim/init.vim &> /dev/null
 ln -s -f "$parent_dir"/config/wezterm/wezterm.lua ~/.config/wezterm/wezterm.lua &> /dev/null
 ln -s -f "$parent_dir"/config/i3/config ~/.config/i3/config &> /dev/null
