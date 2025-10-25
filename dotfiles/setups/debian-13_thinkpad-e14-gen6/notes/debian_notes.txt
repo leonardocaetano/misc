@@ -1,0 +1,1 @@
+- remember to go to /etc/NetworkManager/NetworkManager.conf and comment out the preseved wifi connection. this is important so the network manager applet works

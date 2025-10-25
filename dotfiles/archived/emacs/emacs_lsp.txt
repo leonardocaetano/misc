@@ -1,0 +1,208 @@
+;; ================================ PLUGINS STUFF
+
+;; initial prep for package stuff, adds the melpa mirror
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+			 
+;; list the packages you want
+(setq package-list
+    '(smex treemacs gruvbox-theme company flycheck lsp-mode lsp-ui)) ;; put your packages here!
+
+;; activate all the packages
+(package-initialize)
+
+;; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+;; smex specific settings
+(global-set-key (kbd "M-x") 'smex)
+
+;; treemacs specific settings
+(defvar treemacs-no-load-time-warnings t)
+(defvar treemacs-no-png-images t)
+(global-set-key (kbd "<f9>") 'treemacs)
+
+;; ================================ INDENTATION STUFF
+
+;; @NOTE: we should try to find a way to encapsulate this under a personal profile and provide other ones for when dealing with other's people code
+
+;; --- C/C++
+
+;; proper switch/case indent in C
+(add-hook 'c-mode-common-hook
+          (lambda ()
+             (c-set-offset 'case-label '+)))
+
+;; other C stuff
+(setq c-default-style "bsd")
+(setq-default indent-tabs-mode nil)
+(setq c-basic-offset 4)
+(setq default-tab-width 4)
+
+;; ================================ LANGUAGE-SPECIFIC STUFF
+
+;; --- C/C++
+
+;; cycle through .c/.cpp and .h using C-c
+(add-hook 'c-mode-common-hook
+  (lambda()
+  (local-set-key  (kbd "C-c") 'ff-find-other-file)))
+
+;; ================================ LSP STUFF
+
+;; company specify settings
+(global-company-mode 1)
+
+;; flycheck specific settings
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; lsp-mode especfic settings
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init (add-hook 'c-mode-common-hook 'lsp-deferred)
+  :init (add-hook 'latex-mode-common-hook 'lsp-deferred)
+  :init (add-hook 'python-mode-common-hook 'lsp-deferred)
+)
+
+(global-set-key (kbd "<f5>") 'lsp)
+
+;; lsp-ui specific settings
+(defvar lsp-ui-mode t)
+(defvar lsp-ui-sideline-show-diagnostics t)
+(defvar lsp-ui-sideline-show-hover t)
+(defvar lsp-ui-sideline-delay 0)
+
+;; ================================ GLOBAL CONFIGS
+
+;; disables menu-bar
+(menu-bar-mode -1)
+
+;; disables tool-bar
+(tool-bar-mode -1)
+
+;; disables scroll-bar
+(toggle-scroll-bar -1)
+
+;; enables auto-reload
+(global-auto-revert-mode t)
+
+;; removes splash-screen
+(setq inhibit-splash-screen t)
+
+;; removes the fringe (aka these spaces on the horizontal sides of the buffers)
+(set-fringe-mode '(0 . 1))
+
+;; makes emacs to save all files as LF
+(setq require-final-newline t)
+
+;; disables the quit short-cut, for my own safety
+(global-unset-key (kbd "C-x C-c")) 
+
+;; sets the font config
+(set-frame-font "Liberation Mono 12")
+
+;; loads a theme
+(load-theme 'gruvbox-dark-hard 'no-confirm)
+
+;; asks for confirmation inside the minibuffer instead of opening a annoying window
+;; @TODO
+
+;; highlights @TODOs and other stuff
+(setq fixme-modes '(c++-mode c-mode python-mode latex-mode emacs-lisp-mode))
+(make-face 'font-lock-fixme-face)
+(make-face 'font-lock-study-face)
+(make-face 'font-lock-important-face)
+(make-face 'font-lock-note-face)
+(mapc (lambda (mode)
+	(font-lock-add-keywords
+	 mode
+	 '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
+	   ("\\<\\(STUDY\\)" 1 'font-lock-study-face t)
+	   ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
+           ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
+      fixme-modes)
+(modify-face 'font-lock-fixme-face "Yellow" nil nil t nil t nil nil)
+(modify-face 'font-lock-study-face "Yellow" nil nil t nil t nil nil)
+(modify-face 'font-lock-important-face "Yellow" nil nil t nil t nil nil)
+(modify-face 'font-lock-note-face "Yellow" nil nil t nil t nil nil)
+
+;; changes the cursor style
+(setq-default cursor-type 'bar)
+
+;; puts backup files but don't disables then
+(setq
+   backup-by-copying t      ; doesn't clobber symlinks
+   backup-directory-alist
+   '(("." . "~/.emacs_saves/"))     ; doesn't litter my fs tree
+   delete-old-versions t
+   kept-new-versions 50
+   kept-old-versions 10
+   version-control t)       ; use versioned backups
+
+(setq auto-save-file-name-transforms
+      `((".*" ,"~/.emacs_saves/" t)))
+
+;; disables the default minibuffer message
+(defun display-startup-echo-area-message nil)
+
+;; just a nice msg for you, the one who programs
+(setq initial-major-mode 'text-mode)
+(setq initial-scratch-message "
+
+
+             stuff is going to get made")
+
+;; sets a default directory for startup
+(if (eq system-type 'gnu/linux)
+    (setq default-directory "~/dev/")
+)
+(if (eq system-type 'windows-nt)
+    (setq default-directory "c:/dev/")
+)
+
+;; duplicate line
+(defun duplicate-line() 
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)													
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
+)
+(global-set-key (kbd "C-q") 'duplicate-line)
+
+;; the name of file open appears on window title
+(setq frame-title-format "%b")
+
+;; minimize garbage collection during startup
+(setq gc-cons-threshold most-positive-fixnum)
+
+;; show the number of matches on search
+(defun my-isearch-update-post-hook()
+  (let (suffix num-before num-after num-total)
+    (setq num-before (count-matches isearch-string (point-min) (point)))
+    (setq num-after (count-matches isearch-string (point) (point-max)))
+    (setq num-total (+ num-before num-after))
+    (setq suffix (if (= num-total 0)
+                     ""
+                   (format " [%d of %d]" num-before num-total)))
+    (setq isearch-message-suffix-add suffix)
+    (isearch-message)))
+(add-hook 'isearch-update-post-hook 'my-isearch-update-post-hook)
+
+;; ignore case when searching
+(setq ac-ignore-case nil)
+
+;; puts this custom-file stuff away
+(defconst custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file t 'noerror 'nomessage)
+
+;; ================================ EOF

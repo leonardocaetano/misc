@@ -1,0 +1,36 @@
+use the default pacman mirror
+if your efi partition is monted on /boot instead of /boot/efi, when you point to it on grub-install just point to it, no /eft subfolder will be created
+don't install anything boot releated other then grub
+generally, this is your partation table:
+
+/dev/sda1 - efi partition 512M fat32
+/dev/sda2 - ext4 partition, all the rest of your storage device, but the 512M for efi and 2GB for swap
+/dev/sda3 - swap partition, i have plenty of ram, but this is just in case
+
+don't forget to generate the fstab using GUID (-U command!!)
+
+packages to install while you are in chroot
+
+networkmanager (don't forget to activate its initalization on systemd!!!!!)
+vim and nvim
+grub
+sudo
+efibootmgr
+
+then you create your leo user, with the wheel group (which is enough to have sudo access)
+
+after install, pkgs to install:
+
+nvidia xorg-server xorg-xinit xorg-xrdb pulseaudio alsa-utils firefox i3 dmenu wezterm git github-cli xorg-xrandr python gcc gdb python-pip man terminus-font htop screenfetch less obs-studio scrot xclip vim zathura zathura-djvu zathura-pdf-mupdf p7zip notcurses ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji zsh zsh-completions tmux wget base-devel libreoffice llvm clang texlab python-lsp-server python-sympy python-pyright nvim vim neovide discord fzf okular
+
+pacman -S $(pacman -Ssq texlive-)
+
+to use p7zip, just type 7z on terminal
+
+forget about urxvt, use wezterm!
+
+to install sublime merge, check this guide (don't do it through AUR)
+
+https://www.sublimemerge.com/docs/linux_repositories#pacman
+
+(run it using smerge, dont forget to go to Preferences -> Commits -> Merge Commit Display -> Expand by Default)

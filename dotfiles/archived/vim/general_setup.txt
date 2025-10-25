@@ -1,0 +1,17 @@
+on windows:
+
+- download gvim portable from the official github page
+- include vim on your path
+- install liberation mono font
+- install git
+- create the $HOME global variable with the value 'c:\home\', without the '
+- run windows_symlink.bat, this will create the c:\home\ folder as well
+- on windows terminal, set the font to liberation mono as well, with size 12, you should also setup the cursor to be a filled box, also remove the left scroll bar
+
+on linux:
+
+- install git
+- just clone this repo and run linux_symlink.sh, gvim on linux is not solved at this point, but terminal should be fine
+- for ssh on windows, set the font on windows terminal to liberation mono 12 too, you should also setup the cursor to be a filled box, also remove the left scroll bar
+
+note: we should setup a few git hooks to make this more elegant and manual, but meh atm

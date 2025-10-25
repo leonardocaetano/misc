@@ -1,0 +1,16 @@
+HISTSIZE=500
+SAVEHIST=500
+HISTFILE=~/.bash_history
+alias ls="ls -lah --color=auto"
+alias dir="ls -lah --color=auto"
+alias cls="clear"
+alias vim="nvim"
+alias power="powerprofilesctl"
+
+# appimages path
+# obs: this is only for the bash terminal, not your DE's
+# remember to remove the .AppImage extension and only then chmod +x it
+export PATH="$HOME/.appimages:$PATH"
+
+# this 'clear' line is for a very stupid urxvt bug
+clear

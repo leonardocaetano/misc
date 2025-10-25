@@ -1,0 +1,44 @@
+install windows 11
+install firefox, log in and sync favorites and passwords
+disable windows' hiberfile, shutdown computer and monitor. disable the shortcut that changes language input, fix the right click menu
+download and sync gdrive
+download 7zip
+download voidtool's everything
+download milton software
+download sysinternals suite (and do the ctrl2cap thing)
+download powertoys (and do the fancyzones thing, disable the ctrl focus thing)
+download discord
+on firefox, install ublock, i don't care about cookies, old reddit, log on mastodon, reddit, hn, twitch, google
+download obs
+download qbittorent
+download vlc
+download sumatrapdf
+download notepad++
+download baregrep
+download nvim (and put it on $PATH)
+download neovide
+download python (and put it on $PATH, also put the \Scripts folder on $PATH, also run python -m pip install python-lsp-server, also sympy, also pyright, also neovim)
+download texlive and put it on your $PATH
+download speedcrunch
+download wolfram mathematica (13+) 
+download office 202x 
+download remedybg (and put it on $PATH)
+download gnu/less (and put it on $PATH)
+download pscp (and put it on $PATH)
+download llvm 
+download visual studio
+download windbg
+download msys2, use the MSYS2 MSYS launcher (this enables the use of linux tools like awk, gdb, etc inside windows, for native windows dev)
+download and cfg git (do the name/email thing properly, use the gh auth)
+download sublime merge
+download photoshop and premiere
+download virtualbox and ubuntu-server (and do the SSH thing)
+download scoop (https://scoop.sh)
+do the support for long path (paste Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1 on a powershell terminal with adm privilegies)
+download startallback (and buy it later!!!!!)
+
+on the ubuntu vm: 
+- install XFCE, firefox and vim (sync the .vimrc)
+- git (and setup it, use the gh auth thing) (by the making of this [25/11/23], ssh is on the server by default)
+
+to fix time when dual booting win/linux: For 64-bit Windows, open regedit then browse to HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation. Create a new QWORD entry called RealTimeIsUniversal , then set its value to 1 . Reboot the system. The clock should now be in UTC time.

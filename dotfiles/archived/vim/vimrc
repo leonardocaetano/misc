@@ -1,0 +1,138 @@
+""""""""""""""" PLUGINS BS
+
+" innitialization of the plug.vim plugin
+if has('win32')                               
+    if empty(glob('c:\home\.vim\plug.vim'))
+        silent !curl -fLo c:\home\.vim\plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        source ~/.vim/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC         
+    endif
+    source ~/.vim/plug.vim
+elseif has('unix')
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+endif
+
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'preservim/nerdtree'
+Plug 'tomasiser/vim-code-dark'
+Plug 'lervag/vimtex'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+" NERDTree config
+if has('win32')                               
+    nmap <F9> :NERDTreeToggle c:\dev<CR>
+elseif has('unix')
+    nmap <F9> :NERDTreeToggle ~/dev<CR>
+endif
+
+inoremap <F9> <Esc>:normal<CR> <F9><CR>
+
+let NERDTreeShowBookmarks=1
+
+" airline config
+let g:airline#extensions#whitespace#enabled=0 " removes the trailing thing from the statusbar
+let g:airline_theme = 'codedark'
+" let g:airline#extensions#tabline#enabled=1 "buffer view stuff
+
+" vimtex settings
+let g:tex_flavor='latex'
+" let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+""""""""""""""" GENERAL CONFIG
+
+if has('win32')                               
+    lang en " by default vim uses the systemlocale language
+    set guifont=Liberation\ Mono:h12
+elseif has('unix')
+    " this is better if left default, gvim on linux is weird
+endif
+
+syntax on 
+set encoding=utf-8
+set viminfofile=~/.vim/viminfo
+colorscheme codedark
+
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
+
+set termguicolors " these are for showing the right colors on terminals 
+set t_RV=
+
+set guioptions-=m " removes the menu bar
+set guioptions-=T " removes the toolbar
+set guioptions-=r " removes the right scrollbar
+set guioptions-=L " removes the left scrollbar
+
+set wildmenu " makes the menu on command mode to show
+set wildmode=longest:full,full
+
+set nobackup " disable the creation of these stupid files
+set nowritebackup
+set noswapfile
+set noundofile
+
+if has("gui_running")
+    set lines=60 columns=150
+endif
+
+set cursorline     " highlights the line where the cursor is
+set ruler          " shows information
+" set nowrap         " you have to scroll horizontally in order to see it
+set number         " these two shows the relative ruler stuff
+set relativenumber " these two shows the relative ruler stuff
+
+set fileformat=unix " this forces vim on windows to use LF as well
+set backupcopy=yes  " so the inodes from the hardlinks doesn't break
+
+set mouse-=a " disables any mouse action
+
+set termguicolors " these are for showing the right colors on terminals 
+set t_RV=
+
+set hlsearch
+
+" DOS edit-style copy and paste to system buffer
+vmap <C-Insert> "*y<CR>
+vmap <C-Delete> "*d<CR>
+nmap <S-Insert> "*P<CR>
+vmap <S-Insert> "*P<CR>
+
+" Remaps the arrow keys to nothing. Learn hjkl!
+map <Up> <nop>
+map <Down> <nop>
+map <Left> <nop>
+map <Right> <nop>
+
+""""""""""""""" SOME IDENTATION STUFF
+
+filetype plugin indent on
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smartindent
+set autoindent
+set cinoptions+==0 " this makes identation on switch/case to be close to allman's style
+set cindent
+
+" this is a test fir auto closing brakets, etc...
+
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O

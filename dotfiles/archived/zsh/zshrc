@@ -1,0 +1,12 @@
+PS1='%n@%m [%~] $ '
+HISTSIZE=500
+SAVEHIST=500
+HISTFILE=~/.zsh/zsh_history
+source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+alias ls="ls -lah --color=auto"
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias vim="nvim"
