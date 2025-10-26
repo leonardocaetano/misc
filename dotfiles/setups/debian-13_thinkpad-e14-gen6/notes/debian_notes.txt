@@ -18,6 +18,7 @@ pulseaudio
 man
 git
 curl
+fsearch (voidtools' everything equivalent)
 the nvidia driver stuff (go on debian wiki for instructions)
 wezterm and neovide (appimages)
 gh (the only external mirror one)
