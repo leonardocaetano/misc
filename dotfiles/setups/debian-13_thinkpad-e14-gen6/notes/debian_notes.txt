@@ -1,4 +1,4 @@
-- remember to go to /etc/NetworkManager/NetworkManager.conf and comment out the preseved wifi connection. this is important so the network manager applet works
+- remember to go to /etc/network/interfaces and comment out the preseved wifi connection. this is important so the network manager applet works
 
 - just leave the root password blank and create only the user one, the sudo permisions for the user will be created automatically
 
