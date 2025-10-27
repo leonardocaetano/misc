@@ -18,7 +18,9 @@ pulseaudio
 man
 git
 curl
+network-manager-applet
 fsearch (voidtools' everything equivalent)
+brightnessctl (for monitor sutff)
 the nvidia driver stuff (go on debian wiki for instructions)
 wezterm and neovide (appimages)
 gh (the only external mirror one)
